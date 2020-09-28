@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:id="@+id/top_control_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.myrole.camera_ck.widgets.TextViewCompatTint
+            android:id="@+id/cancel_media_action"
+            style="@style/PreviewButtonsStyle"
+            android:drawableTop="@drawable/ic_clear_white_24dp"
+            android:text="@string/preview_controls_cancel"
+            app:drawableTint="@color/image" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.myrole.camera_ck.widgets.TextViewCompatTint
+            android:id="@+id/next_media_action"
+            style="@style/PreviewButtonsStyle"
+            android:drawableTop="@drawable/ic_arrow_forward_white_24dp"
+            android:text="@string/next"
+            app:drawableTint="@color/image" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/recorder_video_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_control_bar"
+        android:layout_below="@+id/top_control_bar"
+        android:background="@color/colorPrimary">
+
+        <com.myrole.camera_ck.widgets.CameraPreviewView
+            android:id="@+id/recorder_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black">
+
+
+        </com.myrole.camera_ck.widgets.CameraPreviewView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_control_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:paddingBottom="14dp">
+
+        <TextView
+            android:id="@+id/progress_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/image"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/progressVideo"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+        <TextView
+            android:id="@+id/txt_hold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Press hold to record "
+            android:textColor="@color/image"
+            android:textSize="14sp"
+            android:textStyle="bold"
+             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/switch_camera_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:background="@null"
+                android:padding="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_camera_front_white_24dp"
+                android:tint="@color/image"
+                android:tintMode="multiply" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/record_button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@null"
+                    android:src="@drawable/record_button" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/flash_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:background="@null"
+                android:padding="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_flash_off_white_24dp"
+                android:tint="@color/image"
+                android:tintMode="multiply" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="@string/initializing"
+        android:textColor="@color/dark_gray" />
+
+</RelativeLayout>

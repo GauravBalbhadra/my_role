@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.v9kmedia.v9kview.CameraGLView
+            android:id="@+id/camera_glview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.myrole.progressBar.SegmentedProgressBar
+                android:id="@+id/my_progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rcBackgroundColor="@color/ten_transparent_black"
+                app:rcMax="33"
+                app:rcProgress="0"
+                app:rcProgressColor="@color/pinkish_red"
+                app:rcRadius="5dp"
+                app:rcSecondaryProgressColor="@color/transparent" />
+
+            <!--<ProgressBar
+                android:id="@+id/my_progressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_16"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:layout_marginRight="@dimen/margin_16"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cancel_done_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/ivRecord"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.89"
+                app:layout_constraintLeft_toRightOf="@id/ivRecord"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivRecord"
+                tools:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/done_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20.0dip"
+                    android:layout_marginEnd="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/check_circle"
+                    tools:visibility="gone" />
+
+<!--                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                    android:id="@+id/cancel_icon"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="24dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toStartOf="@id/done_icon"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/ic_cancel"-->
+<!--                    tools:visibility="gone" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.myrole.customData.CameraVideoButton
+                android:id="@+id/ivRecord"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10.0dip"
+                android:elevation="@dimen/margin_10"
+                app:cvb_recording_color="@color/textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.92" />
+
+            <TextView
+                android:id="@+id/tvGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="32dp"
+                android:layout_weight="0.45"
+                android:gravity="center"
+                android:text="Gallery"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_18"
+                app:layout_constraintBottom_toBottomOf="@id/ivRecord"
+                app:layout_constraintLeft_toRightOf="@id/ivRecord"
+                app:layout_constraintTop_toTopOf="@id/ivRecord" />
+
+            <LinearLayout
+                android:id="@+id/option_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24.0dip"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/ivRecord"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.98"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+                <LinearLayout
+                    android:id="@+id/flash_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_camera_flash" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/InfoOverlayText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.0dip"
+                        android:text="Flash"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12.0dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/speed_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:layout_marginTop="10.0dip"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/flash_layout">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_speed_video" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/InfoOverlayText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.0dip"
+                        android:text="Speed"
+                        android:textSize="12.0dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/timer_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:layout_marginTop="10.0dip"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/speed_layout">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_timer" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/InfoOverlayText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.0dip"
+                        android:text="Timer"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12.0dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/flip_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:layout_marginTop="10.0dip"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/timer_layout">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_refresh" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/InfoOverlayText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0.0dip"
+                        android:text="Flip"
+                        android:textSize="12.0dip" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/select_music_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.0dip"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="visible"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/ivRecord"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.01999998">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_music_shadow" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/select_music_text"
+                    style="@style/InfoOverlayText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5.0dip"
+                    android:maxLength="25"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:clickable="false"
+                    android:text="Select Music"
+                    android:textSize="12.0dip" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16.0dip"
+                android:layout_marginTop="24.0dip"
+                android:background="?android:selectableItemBackground"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_clear" />
+
+            <LinearLayout
+                android:id="@+id/linearSpeedContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/ivRecord"
+                app:layout_constraintEnd_toStartOf="@+id/option_layout"
+                app:layout_constraintHorizontal_bias="0.98"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/select_music_layout"
+                app:layout_constraintVertical_bias="0.45">
+
+                <ImageView
+                    android:id="@+id/ivCloseSpeedContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="@dimen/margin_10"
+                    android:src="@drawable/ic_close" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    android:elevation="@dimen/margin_10"
+                    android:visibility="visible"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/margin_6"
+                    app:cardElevation="@dimen/margin_10">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/speedRecycler"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/relative_duration_layer"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="38dp"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/ivRecord"-->
+<!--                app:layout_constraintVertical_bias="1.0">-->
+
+<!--                <com.google.android.material.tabs.TabLayout-->
+<!--                    android:id="@+id/timerTabLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:scrollbars="horizontal"-->
+<!--                    app:tabIndicator="@drawable/ic_minus"-->
+<!--                    app:tabIndicatorColor="@color/white"-->
+<!--                    app:tabIndicatorFullWidth="false"-->
+<!--                    app:tabMode="fixed"-->
+<!--                    app:tabSelectedTextColor="@color/white"-->
+<!--                    app:tabTextAppearance="@style/CustomTextAppearanceTab"-->
+<!--                    app:tabTextColor="@color/grey">-->
+
+<!--                    <com.google.android.material.tabs.TabItem-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="30s" />-->
+
+<!--                    <com.google.android.material.tabs.TabItem-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:focusedByDefault="true"-->
+<!--                        android:text="15s" />-->
+
+<!--                    <com.google.android.material.tabs.TabItem-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="60s" />-->
+
+<!--                    <com.google.android.material.tabs.TabItem-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Template" />-->
+<!--                </com.google.android.material.tabs.TabLayout>-->
+
+<!--                &lt;!&ndash; <TextView-->
+<!--                     android:id="@+id/tvTemplates"-->
+<!--                     android:layout_width="wrap_content"-->
+<!--                     android:layout_height="wrap_content"-->
+<!--                     android:layout_alignParentRight="true"-->
+<!--                     android:layout_centerVertical="true"-->
+<!--                     android:layout_marginRight="@dimen/margin_16"-->
+<!--                     android:text="Template"-->
+<!--                     android:visibility="gone"-->
+<!--                     android:textColor="@color/white"-->
+<!--                     android:textSize="@dimen/font_16" />&ndash;&gt;-->
+<!--            </RelativeLayout>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

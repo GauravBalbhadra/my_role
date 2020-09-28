@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/cameraFragment">
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.myrole.fragments.CameraFragment"
+        android:label="camera_fragment"
+        tools:layout="@layout/fragment_camera">
+
+        <action
+            android:id="@+id/navigate_to_songPickerSubgraph"
+            app:destination="@id/song_picker_nav_graph">
+
+            <argument
+                android:name="isFromHome"
+                app:argType="boolean"
+                android:defaultValue="false"/>
+
+            <argument
+                android:name="showIndex"
+                app:argType="integer"
+                android:defaultValue="0"/>
+
+            <argument
+                android:name="duration"
+                app:argType="long"
+                android:defaultValue="0L"/>
+
+        </action>
+
+        <action
+            android:id="@+id/navigate_to_playbackFragment"
+            app:destination="@id/playbackFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/playbackFragment"
+        android:name="com.myrole.PlaybackFragment"
+        android:label="fragment_playback"
+        tools:layout="@layout/fragment_playback" >
+        <action
+            android:id="@+id/navigate_to_songPickerSubgraph"
+            app:destination="@id/song_picker_nav_graph">
+
+            <argument
+                android:name="isFromHome"
+                app:argType="boolean"
+                android:defaultValue="false"/>
+
+            <argument
+                android:name="showIndex"
+                app:argType="integer"
+                android:defaultValue="0"/>
+
+            <argument
+                android:name="duration"
+                app:argType="long"
+                android:defaultValue="0L"/>
+
+        </action>
+        <action
+            android:id="@+id/navigate_to_postRecordingFragment"
+            app:destination="@id/postRecordingFragment" />
+        <argument
+            android:name="galleryVideoPath"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postRecordingFragment"
+        android:name="com.myrole.PostRecordingFragment"
+        android:label="fragment_post_recording"
+        tools:layout="@layout/fragment_post_recording" />
+
+    <include app:graph="@navigation/song_picker_nav_graph" />
+
+</navigation>

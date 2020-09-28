@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:keepScreenOn="true">
+
+    <com.myrole.camera_ck.internal.ui.view.AspectFrameLayout
+        android:id="@+id/previewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <!--<View
+        android:id="@+id/cover_top_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/squarecamera__cover_start_height"
+        android:visibility="gone"
+        android:layout_alignTop="@id/previewContainer"
+        android:background="@android:color/black"/>
+
+    <View
+        android:id="@+id/cover_bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/squarecamera__cover_start_height"
+        android:visibility="gone"
+        android:layout_alignBottom="@id/previewContainer"
+        android:background="@android:color/black"/>-->
+
+</RelativeLayout>

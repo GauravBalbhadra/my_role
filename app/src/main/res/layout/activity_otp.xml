@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/find_contacst_bg"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.myrole.OTPActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/back_white_icon" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="@dimen/margin_10"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:src="@drawable/otp_logo" />
+
+        <TextView
+            android:id="@+id/txt_verification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/verification_code"
+            android:textAllCaps="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_14" />
+
+        <TextView
+            android:id="@+id/txt_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/margin_10"
+            android:text="@string/enter_otp"
+            android:textAllCaps="true"
+            android:textColor="@color/white_text"
+            android:textSize="@dimen/font_12" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_20"
+            android:background="@color/colorPrimary"
+            app:cardCornerRadius="@dimen/margin_3">
+
+            <EditText
+                android:id="@+id/txt_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="@string/otp_code"
+                android:inputType="number"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:padding="@dimen/margin_15"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/font_13" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_30">
+
+            <Button
+                android:id="@+id/btn_verify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_outline"
+                android:gravity="center"
+                android:paddingLeft="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_10"
+                android:text="@string/verify"
+                android:textColor="@color/white_text"
+                android:textSize="@dimen/font_14" />
+        </com.balysv.materialripple.MaterialRippleLayout>
+
+
+        <TextView
+            android:id="@+id/txt_received"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/margin_20"
+            android:text="@string/not_received_code"
+            android:textAllCaps="true"
+            android:textColor="@color/white_text"
+            android:textSize="@dimen/font_13" />
+
+        <TextView
+            android:id="@+id/txt_resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resend"
+            android:textAllCaps="true"
+            android:textColor="@color/white_text"
+            android:textSize="@dimen/font_14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/timer_progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_2"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:theme="@style/LinearProgress" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_call_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/call_otp_icon"
+                android:drawablePadding="@dimen/margin_10"
+                android:text="@string/call_for_otp"
+                android:textAllCaps="true"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/font_14" />
+
+            <TextView
+                android:id="@+id/txt_otp_timer"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="@color/white_text"
+                android:textSize="@dimen/font_14" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

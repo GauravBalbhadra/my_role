@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <color name="colorPrimary">#6200EE</color>-->
+<!--    <color name="colorPrimaryDark">#3700B3</color>-->
+    <color name="colorAccent">#EA033A</color>
+<!--    <color name="textColorPrimary">#EA033A</color>-->
+<!--    <color name="white">#FFFFFF</color>-->
+    <color name="black">#000000</color>
+    <color name="grey">#8F8C8C</color>
+    <color name="dark_grey">#6A6A6A</color>
+    <color name="light_grey">#E3E2E2</color>
+    <color name="off_grey">#D6D6D6</color>
+    <color name="hint_grey">#B3B2B2</color>
+    <color name="transparent_black">#80000000</color>
+    <color name="gray_line_light">#E5E5E5</color>
+    <color name="gray_line_dark">#939393</color>
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="pinkish_red">#ffff2633</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="image">#222222</color>
+    <color name="textColorGrayDark">#626262</color>
+    <color name="textColorGray">#9f9f9f</color>
+    <color name="white_text">#fdfbfb</color>
+    <color name="textColorSecondary">#434242</color>
+    <color name="ten_transparent_black">#0d000000</color>
+    <color name="fifty_transparent_black">#802F2F2F</color>
+
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#1C1F30</color>
+<!--    <color name="colorAccent">#FFF</color>-->
+    <color name="textColorPrimary">#fc023d</color>
+
+    <color name="green_color">#16CE6F</color>
+    <color name="cloud_white">#f3f3f3</color>
+    <color name="bottom_bar">#22252b</color>
+    <color name="textProfile">#bbb4b6</color>
+    <color name="half_black">#808080</color>
+    <color name="white">#fafafa</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="badgeTextColor">#fff</color>
+    <color name="dimgray">#696969</color>
+    <color name="gunmental">#47535d</color>
+    <color name="kjk">#D2D0D2</color>
+    <!--camera_ck_sir-->
+    <color name="darkgray">#3e3b3b</color>
+
+    <!-- VIDEO TRIMMER -->
+    <color name="background_video_color">#2f3031</color>
+    <color name="background_progress_color">#6C6D6D</color>
+    <color name="progress_color">@color/colorPrimary</color>
+    <color name="line_color">#FF15FF00</color>
+    <color name="shadow_color">#FF000000</color>
+    <color name="line_button">#565758</color>
+
+    <!-- VIDEO RECORDER -->
+    <color name="dark_gray">#222</color>
+    <color name="red">#ff0000</color>
+    <!--end-->
+
+<!--    <color name="colorPrimaryDark">#3700B3</color>-->
+<!--    <color name="colorAccent">#EA033A</color>-->
+
+    <color name="app_color">#c52127</color>
+    <color name="md_edittext_error">#c52127</color>
+</resources>

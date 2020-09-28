@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/watchContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".dashboard.WatchMyVideosActivity">
+    <fragment
+        android:name="com.myrole.dashboard.frags.MyWatchFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+    &lt;!&ndash; <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/recylerview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:scrollingCache="true" />
+
+     <ProgressBar
+         android:id="@+id/p_bar"
+         style="?android:attr/progressBarStyleHorizontal"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:indeterminateOnly="true"
+         android:visibility="gone"
+         android:indeterminateTint="@color/white"
+         android:secondaryProgress="@android:integer/config_shortAnimTime"/>&ndash;&gt;
+</FrameLayout>-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:id="@+id/coordinator"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@color/white"
+    tools:context=".dashboard.WatchMyVideosActivity"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/watchContainer"
+        android:name="com.myrole.dashboard.frags.MyWatchFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/update_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:backgroundTint="#F5444444"
+        android:clipToPadding="true"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:cardCornerRadius="14dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_16sdp"
+                android:src="@drawable/ic_baseline_drag_handle_24" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_4sdp"
+                android:paddingBottom="5dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="Share"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewShare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="#DD595757"
+                android:text="Cancel"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

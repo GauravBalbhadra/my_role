@@ -1,0 +1,84 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_height">180dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="tab_max_width">200dp</dimen>
+
+
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="font_12.5">12.5sp</dimen>
+    <dimen name="font_13">13sp</dimen>
+    <dimen name="font_14">14sp</dimen>
+    <dimen name="font_15">15sp</dimen>
+    <dimen name="font_16">16sp</dimen>
+    <dimen name="font_17">17sp</dimen>
+    <dimen name="font_18">18sp</dimen>
+
+    <dimen name="font_24">14sp</dimen>
+    <dimen name="font_25">15sp</dimen>
+    <dimen name="font_28">16sp</dimen>
+    <dimen name="font_30">17sp</dimen>
+    <dimen name="font_32">18sp</dimen>
+
+    <dimen name="font_20">20sp</dimen>
+    <dimen name="font_22">22sp</dimen>
+
+    <dimen name="margin_1">1dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_7">7dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_21">21dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
+
+    <dimen name="cvb_border_width">8dp</dimen>
+    <dimen name="grid_expected_size">120dp</dimen>
+
+    <dimen name="margin_6">6dp</dimen>
+
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_22">22dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+
+    <dimen name="margin_32">32dp</dimen>
+
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="margin_64">64dp</dimen>
+
+    <dimen name="text_margin">16dp</dimen>
+
+
+    <bool name="isTablet">false</bool>
+    <declare-styleable name="MaterialTabHost">
+        <attr name="hasIcons" format="boolean" />
+        <attr name="primaryColor" format="color" />
+        <attr name="accentColor" format="color" />
+        <attr name="iconColor" format="color" />
+        <attr name="textColor" format="color" />
+    </declare-styleable>
+    <dimen name="materialTextTab">14sp</dimen>
+    <dimen name="tabSelectorHeight">4dp</dimen>
+    <integer name="rcv_animationDurationHide">420</integer>
+    <integer name="rcv_animationDurationReveal">420</integer>
+
+
+    <!-- VIDEO TRIMMER-->
+    <dimen name="progress_video_line_height">2dp</dimen>
+    <dimen name="frames_video_height">40dip</dimen>
+
+    <dimen name="evp_text_size_medium">16sp</dimen>
+</resources>

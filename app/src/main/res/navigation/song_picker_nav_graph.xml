@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/song_picker_nav_graph"
+    app:startDestination="@id/mixupFragment">
+
+    <fragment
+        android:id="@+id/mixupFragment"
+        android:name="com.myrole.MixupFragment"
+        android:label="fragment_mixup"
+        tools:layout="@layout/fragment_mixup" >
+
+        <action
+            android:id="@+id/action_mixupFragment_to_editSoundFragment"
+            app:destination="@id/editSoundFragment" />
+
+        <argument
+            android:name="isFromHome"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="showIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="duration"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editSoundFragment"
+        android:name="com.myrole.EditSoundFragment"
+        android:label="fragment_edit_sound"
+        tools:layout="@layout/fragment_edit_sound" />
+
+</navigation>

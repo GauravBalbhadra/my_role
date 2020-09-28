@@ -1,0 +1,116 @@
+{
+  "status": true,
+  "message": "category list",
+  "data": [
+    {
+      "id": 0,
+      "name": "TRENDING",
+      "icon": "",
+      "req_image": 1,
+      "req_video": 1,
+      "role_name": "",
+      "role_id": 0,
+      "role_description": "",
+      "role_start_date": "",
+      "role_end_date": ""
+    }
+  ,
+    {
+      "id": 1,
+      "name": "POPULAR",
+      "icon": "http://myrole.deorwine.com//uploads/categories/microphone2.png",
+      "req_image": 1,
+      "req_video": 1,
+      "role_name": "",
+      "role_id": 0,
+      "role_description": "",
+      "role_start_date": "",
+      "role_end_date": ""
+    },
+    {
+      "id": 2,
+      "name": "RECENT",
+      "icon": "http://myrole.deorwine.com//uploads/categories/microphone.png",
+      "req_image": 1,
+      "req_video": 1,
+      "role_name": "",
+      "role_id": 0,
+      "role_description": "",
+      "role_start_date": "",
+      "role_end_date": ""
+    }
+//    ,
+//    {
+//      "id": 3,
+//      "name": "POPULAR",
+//      "icon": "http://myrole.deorwine.com//uploads/categories/flamenco-couple-dancing.png",
+//      "req_image": 1,
+//      "req_video": 1,
+//      "role_name": "",
+//      "role_id": 0,
+//      "role_description": "",
+//      "role_start_date": "",
+//      "role_end_date": ""
+//    },
+//    {
+//      "id": 6,
+//      "name": "Drama",
+//      "icon": "http://myrole.deorwine.com//uploads/categories/flamenco-couple-dancing.png",
+//      "req_image": 1,
+//      "req_video": 1,
+//      "role_name": "",
+//      "role_id": 0,
+//      "role_description": "",
+//      "role_start_date": "",
+//      "role_end_date": ""
+//    }
+//    {
+//      "id": 8,
+//      "name": "Music",
+//      "icon": "http://myrole.deorwine.com//uploads/categories/music-player.png",
+//      "req_image": 1,
+//      "req_video": 1,
+//      "role_name": "",
+//      "role_id": 0,
+//      "role_description": "",
+//      "role_start_date": "",
+//      "role_end_date": ""
+//    },
+//    {
+//      "id": 9,
+//      "name": "Dialouge",
+//      "icon": "http://myrole.deorwine.com//uploads/categories/chat.png",
+//      "req_image": 1,
+//      "req_video": 1,
+//      "role_name": "",
+//      "role_id": 0,
+//      "role_description": "",
+//      "role_start_date": "",
+//      "role_end_date": ""
+//    },
+//    {
+//      "id": 10,
+//      "name": "Comedy",
+//      "icon": "http://myrole.deorwine.com//uploads/categories/drama-masks.png",
+//      "req_image": 1,
+//      "req_video": 1,
+//      "role_name": "",
+//      "role_id": 0,
+//      "role_description": "",
+//      "role_start_date": "",
+//      "role_end_date": ""
+//    },
+//    {
+//      "id": 11,
+//      "name": "Photoshoot",
+//      "icon": "http://myrole.deorwine.com//uploads/categories/icon.png",
+//      "req_image": 1,
+//      "req_video": 0,
+//      "role_name": "",
+//      "role_id": 0,
+//      "role_description": "",
+//      "role_start_date": "",
+//      "role_end_date": ""
+//    }
+  ]
+}

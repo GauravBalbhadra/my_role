@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditSoundFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/back_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:alpha="0.8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:padding="@dimen/margin_16"
+        app:srcCompat="@drawable/back_icon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relative_bottom_container"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:layout_marginRight="@dimen/margin_16"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear_speed_motion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingTop="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_4"
+                android:src="@drawable/ic_speed_video" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="Motion"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_trim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingTop="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_4"
+                android:src="@drawable/ic_interface" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="Trim"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_voice_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingTop="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_4"
+                android:src="@drawable/ic_voiceover" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="VoiceOver"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingTop="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_4"
+                android:src="@drawable/ic_volume_menu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="Volume"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_12" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_8">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_sound_mix_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_music"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_12"
+                android:text="Mixup"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_10" />
+
+            <TextView
+                android:id="@+id/tv_sound_effect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_effects"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_8"
+                android:text="Effects"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_10" />
+
+            <TextView
+                android:id="@+id/tv_sound_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_filters"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_16"
+                android:text="Filter"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_10" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_16"
+            android:padding="@dimen/margin_8"
+            android:src="@drawable/ic_right_arrow" />
+    </RelativeLayout>
+
+</RelativeLayout>

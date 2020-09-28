@@ -1,0 +1,2 @@
+include ':gallerypicker',':app'
+rootProject.name='myrole'

@@ -1,0 +1,247 @@
+<resources>
+    <string name="app_name">My Role</string>
+    <!--<string name="facebook_key">1673357266254895</string>-->
+    <!--<string name="facebook_key">1190312731045138</string>-->
+    <string name="facebook_key">1480903595329724</string>
+    <string name="crash_toast_text">Application Crashed</string>
+    <string name="action_settings">Settings</string>
+
+    <!--edit activity-->
+    <string name="font_aweome_edit">&#xf044;</string>
+    <string name="font_aweome_check">&#xf00c;</string>
+    <string name="font_aweome_close">&#xf00d;</string>
+    <string name="font_aweome_search">&#xf002;</string>
+
+
+    <!--Error Messages-->
+    <string name="error_mobile_number_empty">Please enter mobile number</string>
+    <string name="error_mobile_number_digit">Mobile number should be at least 10 digits</string>
+    <string name="error_number_already_registered">Mobile number already registered.</string>
+
+    <string name="error_otp_empty">Please enter OTP</string>
+    <string name="error_otp_invalid">Invalid OTP, please try again</string>
+    <string name="error_otp_suggestion">Still not got OTP then resend or use call for OTP</string>
+    <string name="error_otp_wrong">Something went wrong, Please try again</string>
+
+    <string name="error_username_empty">Please enter user name</string>
+    <string name="error_fullname_empty">Please enter full name</string>
+    <string name="error_password_empty">Please enter password</string>
+    <string name="error_password_small">Password should be at least 6 character long</string>
+    <string name="error_no_contact">No contact available on My Role</string>
+    <string name="error_password_no_match">Password did not match</string>
+    <string name="error_no_contact_phone">No contact available in phone</string>
+
+    <string name="welcome_line1">Hey ! This world is yours</string>
+    <string name="welcome_line2">Discover the champion inside you</string>
+    <string name="signup_with_mobile">Sign up with your mobile number</string>
+    <string name="get_started">Get Started</string>
+    <string name="already_have_account">Already have an account ?</string>
+    <string name="sign_in">Sign In</string>
+
+    <string name="user_name">User Name</string>
+    <string name="full_name">Full Name</string>
+    <string name="password">Password</string>
+    <string name="i_m_done">I am done!</string>
+
+    <!--Login-->
+    <string name="mobile_username">Mobile/User Name</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="dont_have_account">Don\'t have an account ?</string>
+    <string name="signup">Sign Up</string>
+
+    <!--Find Contacts-->
+    <string name="find_contacts_follow">Find Contacts To Follow</string>
+    <string name="find_contacts_see">See which of your friends are already their on My Role </string>
+    <string name="skip">Skip</string>
+    <string name="find_contacts">Find Contacts</string>
+
+    <!--Facebook Connect-->
+    <string name="find_fb_friend">Find Facebook Friend To Follow</string>
+    <string name="connect_fb_account">Connect Your Facebook Account</string>
+    <string name="connect_facebook">Connect to Facebook</string>
+
+    <!--Forgot Password-->
+    <string name="forgot_your_password">Forgot Your Password</string>
+    <string name="forgot_password_text">Enter your Registered phone number we will send you an OTP to reset your password</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="proceed">Proceed</string>
+
+    <!--Mobile Number-->
+    <string name="enter_mobile_text">Please Enter Your phone number We will send  you an oTP to Verify</string>
+    <string name="enter_mobile">Enter Your Mobile Number</string>
+    <string name="call_for_otp">Call for otp</string>
+
+
+    <!--OTP Verify-->
+    <string name="verification_code">Verification Code</string>
+    <string name="not_received_code">Didn’t Received Code ?</string>
+    <string name="resend">Resend</string>
+    <string name="enter_otp">Enter OTP Sent on Your Mobile</string>
+    <string name="otp_code">One Time Verification Code</string>
+    <string name="verify">Verify</string>
+
+    <!--Reset Password-->
+    <string name="reset_password">Reset your password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="done">Done</string>
+
+    <!--Contacts-->
+    <string name="contacts_myrole">of your contacts are on My Role</string>
+    <string name="invite">Invite</string>
+    <string name="follow">Follow</string>
+    <string name="follow_request">Follow Request</string>
+    <string name="follow_request_sent">Follow Request Sent</string>
+    <string name="no_activity_found">No Activity found</string>
+    <string name="no_result_found">No result found</string>
+    <string name="txt_searching">Searching.....</string>
+    <string name="following">Following</string>
+    <string name="block">Block</string>
+    <string name="follow_all">Follow All</string>
+    <string name="title_activity_contacts">ContactsActivity</string>
+
+    <!--Request-->
+
+    <!--Drawer-->
+    <string name="home">HOME</string>
+    <string name="options">OPTIONS</string>
+    <string name="support">SUPPORT</string>
+    <string name="feedback">FEEDBACK</string>
+    <string name="share">SHARE MY ROLE</string>
+    <string name="logout">LOGOUT</string>
+
+    <!--Feedback-->
+    <string name="txt_feedback">Submit your feedback</string>
+
+
+    <!--Profile-->
+    <string name="txt_private_user">This user is private.Please follow this user to see posts.</string>
+    <string name="video">VIDEO</string>
+    <string name="about">ABOUT</string>
+    <string name="followers">FOLLOWERS</string>
+    <string name="likers">LIKES</string>
+    <string name="posts">POSTS</string>
+
+    <!--Build Profile-->
+    <string name="build_your_profile">Build Your Profile</string>
+    <string name="few_more_info">Just few more info you are done !</string>
+    <string name="add_profile_pic">ADD A PROFILE PICTURE</string>
+    <string name="add_short_video">ADD A SHORT VIDEO</string>
+    <string name="dob">DATE OF BIRTH</string>
+    <string name="gender">GENDER</string>
+    <string name="nationality">NATIONALITY</string>
+    <string name="hobby">HOBBY</string>
+    <string name="pincode">PINCODE</string>
+    <string name="address">ADDRESS</string>
+    <string name="height">HEIGHT</string>
+    <string name="district">DISTRICT</string>
+    <string name="state">STATE</string>
+
+    <string name="following_hint">FOLLOWING</string>
+    <string name="weight">WEIGHT</string>
+    <string name="feet_hint">In Feet</string>
+
+    <string name="txt_dist">Enter District</string>
+    <string name="in_kg">In Kgs</string>
+    <string name="txt_state">Enter State</string>
+    <string name="appearance">APPEARANCE</string>
+    <string name="compilation">COMPLEXION</string>
+    <string name="edit">Edit</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="about_profile">About User</string>
+    <string name="save">Save</string>
+
+    <string name="logout_message">Do you really want to logout?</string>
+
+    <!--Options screen-->
+    <string name="account_setting">Account Settings</string>
+    <string name="change_password">Change Password</string>
+    <string name="private_account">Private Account</string>
+    <string name="general_settings">General Settings</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="share_my_role">Share My Role</string>
+    <string name="follow_people">Follow People</string>
+    <string name="Contact_friends">Invite Contact Friends</string>
+    <string name="facebook_friends">Facebook Friends</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_conditions">Terms and Conditions</string>
+    <string name="app_version">App Version</string>
+
+    <string name="activity">Activity</string>
+    <string name="no_followers">You have no followers.</string>
+    <string name="no_requests">You have no requests.</string>
+    <string name="no_like">You have no like.</string>
+    <string name="no_following">You are not following anyone.</string>
+    <string name="post_detail">Post Detail</string>
+    <string name="description">Media Controls</string>
+
+    <string-array name="android_layout_arrays">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+
+    </string-array>
+
+
+    <!--camera_ck_sir-->
+    <string name="cancel_label">Cancel</string>
+    <string name="ok_label">Ok</string>
+
+    <string name="settings_video_quality_title">Video size %s</string>
+    <string name="settings_photo_quality_title">Photo size</string>
+
+    <!-- Preview Activity -->
+    <string name="preview_controls_confirm">Save</string>
+    <string name="preview_controls_retake">Repeat</string>
+    <string name="preview_controls_rotate_left">Rotate Left</string>
+    <string name="preview_controls_rotate_right">Rotate Right</string>
+    <string name="preview_controls_cancel">Cancel</string>
+    <string name="preview_controls_crop">Crop</string>
+    <string name="preview_controls_original_ratio_label">Original</string>
+
+    <!-- Crop Activity -->
+    <string name="crop_image_activity_title"></string>
+    <string name="crop_image_menu_rotate_left">Rotate counter clockwise</string>
+    <string name="crop_image_menu_rotate_right">Rotate</string>
+    <string name="crop_image_menu_crop">Crop</string>
+    <string name="pick_image_intent_chooser_title">Select source</string>
+
+    <!-- VIDEO TRIMMER-->
+    <string name="cancel">Cancel</string>
+    <!--<string name="save">Save</string>-->
+    <string name="short_seconds">sec</string>
+    <string name="megabyte">MB</string>
+    <string name="kilobyte">KB</string>
+    <string name="trimming_progress">Trimming your video...</string>
+    <!--<string name="video_saved_at">Video saves at : $%1s</string>-->
+
+    <!-- VIDEO RECORDER-->
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="confirm">Confirm</string>
+    <string name="discard_video_msg">Are you sure you want to discard the current recording?</string>
+    <!--<string name="done">Done</string>-->
+    <string name="initializing">Initializing...</string>
+    <string name="next">Next</string>
+    <string name="preparing">Preparing...</string>
+    <string name="btn_name">Camera</string>
+    <string name="dialog_discard_records">Discard current recording progress? Reshoot to record again</string>
+    <string name="exit">Exit</string>
+    <string name="reshoot">Reshoot</string>
+    <string name="title">Discard recording?</string>
+    <string name="apply">Apply</string>
+    <!--end-->
+
+    <!--GenaralCategoryFeedFragment-->
+
+    <!--end-->
+
+    <!--Activity Today Role-->
+    <!--    &#160;  this is use for space in string.xml-->
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--end-->
+
+    <string name="evp_submit">Submit</string>
+</resources>
