@@ -23,10 +23,9 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
 import com.google.android.material.tabs.TabLayout;
+import com.myrole.NewCamera.NewCameraActivity;
 import com.myrole.R;
-import com.myrole.RecordingActivity;
 import com.myrole.dashboard.frags.DashFeedFragment;
 import com.myrole.dashboard.onfragmentback.OnBackPressListener;
 import com.myrole.dashboard.onfragmentback.RootFragment;
@@ -235,7 +234,7 @@ public class MainDashFragment extends RootFragment implements View.OnClickListen
                 //startActivity(new Intent(getActivity(), Video_Recoder_A.class));
 
                 if (isLogin(getContext())){
-                    mRecordForResult.launch(new Intent(getContext(), RecordingActivity.class));
+                    mRecordForResult.launch(new Intent(getContext(), NewCameraActivity.class));
                 } else getLogIn(getContext());
                 //Toast.makeText(context, "Recording clicked", Toast.LENGTH_SHORT).show();
                 /*if(check_permissions()) {

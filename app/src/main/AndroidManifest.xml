@@ -109,6 +109,13 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".NewCamera.NewCameraActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name=".FindActivity"
             android:screenOrientation="portrait"
