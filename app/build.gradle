@@ -23,7 +23,7 @@ android {
         versionCode 28
         versionName "2.0.0"
         multiDexEnabled true
-        // ndk { abiFilters 'armeabi', 'armeabi-v7a', 'x86' }
+        resConfigs "en"
         configurations.all {
             resolutionStrategy.force 'org.hamcrest:hamcrest-core:1.1'
         }
@@ -48,10 +48,10 @@ android {
                 checkReleaseBuilds true
                 abortOnError false
             }
-            debuggable true
-            minifyEnabled false
-//            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     dexOptions {
