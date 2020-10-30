@@ -33,7 +33,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <application xmlns:tools="http://schemas.android.com/tools"
+    <application
         android:name=".MyRole"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

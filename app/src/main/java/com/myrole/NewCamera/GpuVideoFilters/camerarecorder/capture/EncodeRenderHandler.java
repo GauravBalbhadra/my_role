@@ -22,21 +22,25 @@ public class EncodeRenderHandler implements Runnable {
     private static final String TAG = "GPUCameraRecorder";
 
     private final Object sync = new Object();
+    private EGLContext sharedContext;
+    private boolean isRecordable;
+    private Object surface;
+    private int texId = -1;
+
+    private boolean requestSetEglContext;
+    private boolean requestRelease;
+    private int requestDraw;
+
+    private float[] MVPMatrix = new float[16];
+    private float[] STMatrix = new float[16];
+    private float aspectRatio = 1f;
+
     private final float XMatrixScale;
     private final float YMatrixScale;
     private final float fileWidth;
     private final float fileHeight;
     private final boolean recordNoFilter;
-    private EGLContext sharedContext;
-    private boolean isRecordable;
-    private Object surface;
-    private int texId = -1;
-    private boolean requestSetEglContext;
-    private boolean requestRelease;
-    private int requestDraw;
-    private float[] MVPMatrix = new float[16];
-    private float[] STMatrix = new float[16];
-    private float aspectRatio = 1f;
+
     private GlFramebufferObject framebufferObject;
     private GlFramebufferObject filterFramebufferObject;
     private GlFilter normalFilter;
@@ -45,39 +49,6 @@ public class EncodeRenderHandler implements Runnable {
     private EglWrapper egl;
     private EglSurface inputSurface;
     private GlPreview previewShader;
-
-    private EncodeRenderHandler(final boolean flipVertical,
-                                final boolean flipHorizontal,
-                                final float fileAspect,
-                                final float viewAspect,
-                                final float fileWidth,
-                                final float fileHeight,
-                                final boolean recordNoFilter,
-                                final GlFilter filter
-    ) {
-
-
-        this.fileWidth = fileWidth;
-        this.fileHeight = fileHeight;
-        this.recordNoFilter = recordNoFilter;
-        this.glFilter = filter;
-
-        if (fileAspect == viewAspect) {
-            XMatrixScale = (flipHorizontal ? -1 : 1);
-            YMatrixScale = flipVertical ? -1 : 1;
-        } else {
-            if (fileAspect < viewAspect) {
-                XMatrixScale = (flipHorizontal ? -1 : 1);
-                YMatrixScale = (flipVertical ? -1 : 1) * (viewAspect / fileAspect);
-                Log.v(TAG, "cameraAspect: " + viewAspect + " YMatrixScale :" + YMatrixScale);
-            } else {
-                XMatrixScale = (flipHorizontal ? -1 : 1) * (fileAspect / viewAspect);
-                YMatrixScale = (flipVertical ? -1 : 1);
-                Log.v(TAG, "cameraAspect: " + viewAspect + " YMatrixScale :" + YMatrixScale + " XMatrixScale :" + XMatrixScale);
-            }
-        }
-
-    }
 
     static EncodeRenderHandler createHandler(final String name,
                                              final boolean flipVertical,
@@ -110,6 +81,39 @@ public class EncodeRenderHandler implements Runnable {
         }
 
         return handler;
+    }
+
+    private EncodeRenderHandler(final boolean flipVertical,
+                                final boolean flipHorizontal,
+                                final float fileAspect,
+                                final float viewAspect,
+                                final float fileWidth,
+                                final float fileHeight,
+                                final boolean recordNoFilter,
+                                final GlFilter filter
+    ) {
+
+
+        this.fileWidth = fileWidth;
+        this.fileHeight = fileHeight;
+        this.recordNoFilter = recordNoFilter;
+        this.glFilter = filter;
+
+        if (fileAspect == viewAspect) {
+            XMatrixScale = (flipHorizontal ? -1 : 1);
+            YMatrixScale = flipVertical ? -1 : 1;
+        } else {
+            if (fileAspect < viewAspect) {
+                XMatrixScale = (flipHorizontal ? -1 : 1);
+                YMatrixScale = (flipVertical ? -1 : 1) * (viewAspect / fileAspect);
+                Log.v(TAG, "cameraAspect: " + viewAspect + " YMatrixScale :" + YMatrixScale);
+            } else {
+                XMatrixScale = (flipHorizontal ? -1 : 1) * (fileAspect / viewAspect);
+                YMatrixScale = (flipVertical ? -1 : 1);
+                Log.v(TAG, "cameraAspect: " + viewAspect + " YMatrixScale :" + YMatrixScale + " XMatrixScale :" + XMatrixScale);
+            }
+        }
+
     }
 
     final void setEglContext(final EGLContext shared_context, final int tex_id, final Object surface) {

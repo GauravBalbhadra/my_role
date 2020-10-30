@@ -224,6 +224,29 @@ public class GPUMp4Composer {
         getExecutorService().shutdownNow();
     }
 
+
+    public interface Listener {
+        /**
+         * Called to notify progress.
+         *
+         * @param progress Progress in [0.0, 1.0] range, or negative value if progress is unknown.
+         */
+        void onProgress(double progress);
+
+        /**
+         * Called when transcode completed.
+         */
+        void onCompleted();
+
+        /**
+         * Called when transcode canceled.
+         */
+        void onCanceled();
+
+
+        void onFailed(Exception exception);
+    }
+
     private int getVideoRotation(String videoFilePath) {
         MediaMetadataRetriever mediaMetadataRetriever = null;
         try {
@@ -275,28 +298,6 @@ public class GPUMp4Composer {
                 Log.e(TAG, "Failed to release mediaMetadataRetriever.", e);
             }
         }
-    }
-
-    public interface Listener {
-        /**
-         * Called to notify progress.
-         *
-         * @param progress Progress in [0.0, 1.0] range, or negative value if progress is unknown.
-         */
-        void onProgress(double progress);
-
-        /**
-         * Called when transcode completed.
-         */
-        void onCompleted();
-
-        /**
-         * Called when transcode canceled.
-         */
-        void onCanceled();
-
-
-        void onFailed(Exception exception);
     }
 
 }

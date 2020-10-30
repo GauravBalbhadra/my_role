@@ -14,21 +14,35 @@ import java.util.Queue;
 
 class AudioChannel {
 
+    private static class AudioBuffer {
+        int bufferIndex;
+        long presentationTimeUs;
+        ShortBuffer data;
+    }
+
     static final int BUFFER_INDEX_END_OF_STREAM = -1;
+
     private static final int BYTES_PER_SHORT = 2;
     private static final long MICROSECS_PER_SEC = 1000000;
+
     private final Queue<AudioBuffer> emptyBuffers = new ArrayDeque<>();
     private final Queue<AudioBuffer> filledBuffers = new ArrayDeque<>();
+
     private final MediaCodec decoder;
     private final MediaCodec encoder;
     private final MediaFormat encodeFormat;
-    private final MediaCodecBufferCompatWrapper decoderBuffers;
-    private final MediaCodecBufferCompatWrapper encoderBuffers;
-    private final AudioBuffer overflowBuffer = new AudioBuffer();
+
     private int inputSampleRate;
     private int inputChannelCount;
     private int outputChannelCount;
+
+    private final MediaCodecBufferCompatWrapper decoderBuffers;
+    private final MediaCodecBufferCompatWrapper encoderBuffers;
+
+    private final AudioBuffer overflowBuffer = new AudioBuffer();
+
     private MediaFormat actualDecodedFormat;
+
 
     AudioChannel(final MediaCodec decoder,
                  final MediaCodec encoder, final MediaFormat encodeFormat) {
@@ -40,18 +54,12 @@ class AudioChannel {
         encoderBuffers = new MediaCodecBufferCompatWrapper(this.encoder);
     }
 
-    private static long sampleCountToDurationUs(final int sampleCount,
-                                                final int sampleRate,
-                                                final int channelCount) {
-        return (sampleCount / (sampleRate * MICROSECS_PER_SEC)) / channelCount;
-    }
-
     void setActualDecodedFormat(final MediaFormat decodedFormat) {
         actualDecodedFormat = decodedFormat;
 
         inputSampleRate = actualDecodedFormat.getInteger(MediaFormat.KEY_SAMPLE_RATE);
         if (inputSampleRate != encodeFormat.getInteger(MediaFormat.KEY_SAMPLE_RATE)) {
-            throw new UnsupportedOperationException("StorageAudioFile sample rate conversion not supported yet.");
+            throw new UnsupportedOperationException("Audio sample rate conversion not supported yet.");
         }
 
         inputChannelCount = actualDecodedFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT);
@@ -138,6 +146,12 @@ class AudioChannel {
         return true;
     }
 
+    private static long sampleCountToDurationUs(final int sampleCount,
+                                                final int sampleRate,
+                                                final int channelCount) {
+        return (sampleCount / (sampleRate * MICROSECS_PER_SEC)) / channelCount;
+    }
+
     private long drainOverflow(final ShortBuffer outBuff) {
         final ShortBuffer overflowBuff = overflowBuffer.data;
         final int overflowLimit = overflowBuff.limit();
@@ -197,12 +211,6 @@ class AudioChannel {
         }
 
         return input.presentationTimeUs;
-    }
-
-    private static class AudioBuffer {
-        int bufferIndex;
-        long presentationTimeUs;
-        ShortBuffer data;
     }
 }
 

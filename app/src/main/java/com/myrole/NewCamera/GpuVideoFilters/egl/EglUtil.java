@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.opengl.GLES20;
 import android.opengl.GLException;
 import android.opengl.GLUtils;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -21,11 +22,14 @@ import static android.opengl.GLES20.GL_TRUE;
 import static android.opengl.GLES20.glCreateProgram;
 
 
+
 public class EglUtil {
-    public static final int NO_TEXTURE = -1;
-    private static final int FLOAT_SIZE_BYTES = 4;
     private EglUtil() {
     }
+
+    public static final int NO_TEXTURE = -1;
+    private static final int FLOAT_SIZE_BYTES = 4;
+
 
     public static int loadShader(final String strSource, final int iType) {
         int[] compiled = new int[1];
@@ -34,6 +38,7 @@ public class EglUtil {
         GLES20.glCompileShader(iShader);
         GLES20.glGetShaderiv(iShader, GLES20.GL_COMPILE_STATUS, compiled, 0);
         if (compiled[0] == 0) {
+            Log.d("Load Shader Failed", "Compilation\n" + GLES20.glGetShaderInfoLog(iShader));
             return 0;
         }
         return iShader;

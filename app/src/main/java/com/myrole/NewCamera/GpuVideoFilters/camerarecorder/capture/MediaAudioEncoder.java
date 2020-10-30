@@ -21,49 +21,11 @@ public class MediaAudioEncoder extends MediaEncoder {
     private static final int BIT_RATE = 64000;
     private static final int SAMPLES_PER_FRAME = 1024;    // AAC, bytes/frame/channel
     private static final int FRAMES_PER_BUFFER = 25;    // AAC, frame/buffer/sec
-    private static final int[] AUDIO_SOURCES = new int[]{
-            MediaRecorder.AudioSource.MIC,
-            MediaRecorder.AudioSource.DEFAULT,
-            MediaRecorder.AudioSource.CAMCORDER,
-            MediaRecorder.AudioSource.VOICE_COMMUNICATION,
-            MediaRecorder.AudioSource.VOICE_RECOGNITION,
-    };
+
     private AudioThread audioThread = null;
 
     public MediaAudioEncoder(final MediaMuxerCaptureWrapper muxer, final MediaEncoderListener listener) {
         super(muxer, listener);
-    }
-
-    /**
-     * select the first codec that match a specific MIME type
-     *
-     * @param mimeType
-     * @return
-     */
-    private static MediaCodecInfo selectAudioCodec(final String mimeType) {
-        Log.v(TAG, "selectAudioCodec:");
-
-        MediaCodecInfo result = null;
-        MediaCodecList list = new MediaCodecList(MediaCodecList.ALL_CODECS);
-        MediaCodecInfo[] codecInfos = list.getCodecInfos();
-        final int numCodecs = codecInfos.length;
-        LOOP:
-        for (final MediaCodecInfo codecInfo : codecInfos) {
-            if (!codecInfo.isEncoder()) {    // skipp decoder
-                continue;
-            }
-            final String[] types = codecInfo.getSupportedTypes();
-            for (String type : types) {
-                if (type.equalsIgnoreCase(mimeType)) {
-                    Log.i(TAG, "codec:" + codecInfo.getName() + ",MIME=" + type);
-                    if (result == null) {
-                        result = codecInfo;
-                        break LOOP;
-                    }
-                }
-            }
-        }
-        return result;
     }
 
     @Override
@@ -113,6 +75,14 @@ public class MediaAudioEncoder extends MediaEncoder {
         audioThread = null;
         super.release();
     }
+
+    private static final int[] AUDIO_SOURCES = new int[]{
+            MediaRecorder.AudioSource.MIC,
+            MediaRecorder.AudioSource.DEFAULT,
+            MediaRecorder.AudioSource.CAMCORDER,
+            MediaRecorder.AudioSource.VOICE_COMMUNICATION,
+            MediaRecorder.AudioSource.VOICE_RECOGNITION,
+    };
 
     /**
      * Thread to capture audio data from internal mic as uncompressed 16bit PCM data
@@ -179,6 +149,39 @@ public class MediaAudioEncoder extends MediaEncoder {
             }
             Log.v(TAG, "AudioThread:finished");
         }
+    }
+
+    /**
+     * select the first codec that match a specific MIME type
+     *
+     * @param mimeType
+     * @return
+     */
+    private static MediaCodecInfo selectAudioCodec(final String mimeType) {
+        Log.v(TAG, "selectAudioCodec:");
+
+        MediaCodecInfo result = null;
+        MediaCodecList list = new MediaCodecList(MediaCodecList.ALL_CODECS);
+        MediaCodecInfo[] codecInfos = list.getCodecInfos();
+        final int numCodecs = codecInfos.length;
+        LOOP:
+        for (int i = 0; i < numCodecs; i++) {
+            final MediaCodecInfo codecInfo = codecInfos[i];
+            if (!codecInfo.isEncoder()) {    // skipp decoder
+                continue;
+            }
+            final String[] types = codecInfo.getSupportedTypes();
+            for (int j = 0; j < types.length; j++) {
+                if (types[j].equalsIgnoreCase(mimeType)) {
+                    Log.i(TAG, "codec:" + codecInfo.getName() + ",MIME=" + types[j]);
+                    if (result == null) {
+                        result = codecInfo;
+                        break LOOP;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
 }

@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.video.VideoListener;
-
 import com.myrole.NewCamera.GpuVideoFilters.egl.GlConfigChooser;
 import com.myrole.NewCamera.GpuVideoFilters.egl.GlContextFactory;
 import com.myrole.NewCamera.GpuVideoFilters.egl.filter.GlFilter;
@@ -19,7 +18,7 @@ public class GPUPlayerView extends GLSurfaceView implements VideoListener {
     private SimpleExoPlayer player;
 
     private float videoAspect = 1f;
-    private PlayerScaleType playerScaleType = PlayerScaleType.RESIZE_NONE;
+    private PlayerScaleType playerScaleType = PlayerScaleType.RESIZE_FIT_WIDTH;
 
     public GPUPlayerView(Context context) {
         this(context, null);
@@ -27,8 +26,10 @@ public class GPUPlayerView extends GLSurfaceView implements VideoListener {
 
     public GPUPlayerView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         setEGLContextFactory(new GlContextFactory());
         setEGLConfigChooser(new GlConfigChooser(false));
+
         renderer = new GPUPlayerRenderer(this);
         setRenderer(renderer);
 
@@ -57,10 +58,13 @@ public class GPUPlayerView extends GLSurfaceView implements VideoListener {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
+
         int viewWidth = measuredWidth;
         int viewHeight = measuredHeight;
+
         switch (playerScaleType) {
             case RESIZE_FIT_WIDTH:
                 viewHeight = (int) (measuredWidth / videoAspect);
@@ -69,6 +73,9 @@ public class GPUPlayerView extends GLSurfaceView implements VideoListener {
                 viewWidth = (int) (measuredHeight * videoAspect);
                 break;
         }
+
+        // Log.d(TAG, "onMeasure viewWidth = " + viewWidth + " viewHeight = " + viewHeight);
+
         setMeasuredDimension(viewWidth, viewHeight);
 
     }
@@ -84,8 +91,9 @@ public class GPUPlayerView extends GLSurfaceView implements VideoListener {
 
     @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
-        // .d(TAG, "width = " + width + " height = " + height + " unappliedRotationDegrees = " + unappliedRotationDegrees + " pixelWidthHeightRatio = " + pixelWidthHeightRatio);
+        // Log.d(TAG, "width = " + width + " height = " + height + " unappliedRotationDegrees = " + unappliedRotationDegrees + " pixelWidthHeightRatio = " + pixelWidthHeightRatio);
         videoAspect = ((float) width / height) * pixelWidthHeightRatio;
+        // Log.d(TAG, "videoAspect = " + videoAspect);
         requestLayout();
     }
 

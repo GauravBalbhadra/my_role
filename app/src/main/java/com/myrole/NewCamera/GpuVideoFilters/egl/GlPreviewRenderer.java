@@ -10,7 +10,9 @@ import android.util.Size;
 
 import com.myrole.NewCamera.GpuVideoFilters.camerarecorder.capture.MediaVideoEncoder;
 import com.myrole.NewCamera.GpuVideoFilters.egl.filter.GlFilter;
+
 import javax.microedition.khronos.egl.EGLConfig;
+
 import static android.opengl.GLES20.GL_COLOR_BUFFER_BIT;
 import static android.opengl.GLES20.GL_LINEAR;
 import static android.opengl.GLES20.GL_MAX_TEXTURE_SIZE;
@@ -19,18 +21,25 @@ import static android.opengl.GLES20.GL_TEXTURE_2D;
 import static android.opengl.GLES20.glClearColor;
 
 
+
 public class GlPreviewRenderer extends GlFrameBufferObjectRenderer implements SurfaceTexture.OnFrameAvailableListener {
 
     private final Handler handler = new Handler();
-    private final GLSurfaceView glView;
+
     private GlSurfaceTexture previewTexture;
+
     // private final Camera camera;
     private int texName;
+
     private float[] MVPMatrix = new float[16];
     private float[] ProjMatrix = new float[16];
     private float[] MMatrix = new float[16];
     private float[] VMatrix = new float[16];
     private float[] STMatrix = new float[16];
+
+
+    private final GLSurfaceView glView;
+
     private GlFramebufferObject filterFramebufferObject;
     private GlPreview previewShader;
 
@@ -58,6 +67,8 @@ public class GlPreviewRenderer extends GlFrameBufferObjectRenderer implements Su
         this.glView.setEGLContextFactory(new GlContextFactory());
         this.glView.setRenderer(this);
         this.glView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
+
         Matrix.setIdentityM(STMatrix, 0);
     }
 
@@ -66,11 +77,11 @@ public class GlPreviewRenderer extends GlFrameBufferObjectRenderer implements Su
         Matrix.setIdentityM(MMatrix, 0);
         Matrix.rotateM(MMatrix, 0, -angle, 0.0f, 0.0f, 1.0f);
 
-//        .d("GPUCameraRecorder ", "angle" + angle);
-//        .d("GPUCameraRecorder ", "getMeasuredHeight " + glView.getMeasuredHeight());
-//        .d("GPUCameraRecorder ", "getMeasuredWidth " + glView.getMeasuredWidth());
-//        .d("GPUCameraRecorder ", "cameraPreviewWidth " + cameraPreviewWidth);
-//        .d("GPUCameraRecorder ", "cameraPreviewHeight " + cameraPreviewHeight);
+//        Log.d("GPUCameraRecorder ", "angle" + angle);
+//        Log.d("GPUCameraRecorder ", "getMeasuredHeight " + glView.getMeasuredHeight());
+//        Log.d("GPUCameraRecorder ", "getMeasuredWidth " + glView.getMeasuredWidth());
+//        Log.d("GPUCameraRecorder ", "cameraPreviewWidth " + cameraPreviewWidth);
+//        Log.d("GPUCameraRecorder ", "cameraPreviewHeight " + cameraPreviewHeight);
 
 
         if (isLandscapeDevice) {
@@ -300,12 +311,12 @@ public class GlPreviewRenderer extends GlFrameBufferObjectRenderer implements Su
         });
     }
 
-    public void setSurfaceCreateListener(SurfaceCreateListener surfaceCreateListener) {
-        this.surfaceCreateListener = surfaceCreateListener;
-    }
-
     public interface SurfaceCreateListener {
         void onCreated(SurfaceTexture surface);
+    }
+
+    public void setSurfaceCreateListener(SurfaceCreateListener surfaceCreateListener) {
+        this.surfaceCreateListener = surfaceCreateListener;
     }
 }
 

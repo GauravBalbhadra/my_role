@@ -32,33 +32,57 @@ public class CameraThread extends Thread {
 
 
     private static final String TAG = "CameraThread";
+
+
     private final Object readyFence = new Object();
-    private final OnStartPreviewListener listener;
-    private final CameraRecordListener cameraRecordListener;
-    private final CameraManager cameraManager;
-    private final LensFacing lensFacing;
-    volatile boolean isRunning = false;
     private CameraHandler handler;
+    volatile boolean isRunning = false;
+
     private CameraDevice cameraDevice;
     private CaptureRequest.Builder requestBuilder;
     private CameraCaptureSession cameraCaptureSession;
     private Rect sensorArraySize;
+
     private SurfaceTexture surfaceTexture;
+
+    private final OnStartPreviewListener listener;
+    private final CameraRecordListener cameraRecordListener;
+    private final CameraManager cameraManager;
+
     private Size cameraSize;
     private boolean isFlashTorch = false;
-    private boolean flashSupport = false;
-    private CameraCaptureSession.StateCallback cameraCaptureSessionCallback = new CameraCaptureSession.StateCallback() {
-        @Override
-        public void onConfigured(CameraCaptureSession session) {
-            cameraCaptureSession = session;
-            updatePreview();
-        }
+    private final LensFacing lensFacing;
 
-        @Override
-        public void onConfigureFailed(CameraCaptureSession session) {
-            // Toast.makeText(activity, "onConfigureFailed", Toast.LENGTH_LONG).show();
+    private boolean flashSupport = false;
+
+
+    CameraThread(
+            final CameraRecordListener cameraRecordListener,
+            final OnStartPreviewListener listener,
+            final SurfaceTexture surfaceTexture,
+            final CameraManager cameraManager,
+            final LensFacing lensFacing
+    ) {
+        super("Camera thread");
+        this.listener = listener;
+        this.cameraRecordListener = cameraRecordListener;
+        this.surfaceTexture = surfaceTexture;
+        this.cameraManager = cameraManager;
+        this.lensFacing = lensFacing;
+
+    }
+
+    public CameraHandler getHandler() {
+        synchronized (readyFence) {
+            try {
+                readyFence.wait();
+            } catch (final InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-    };
+        return handler;
+    }
+
     private CameraDevice.StateCallback cameraDeviceCallback = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(CameraDevice camera) {
@@ -82,52 +106,19 @@ public class CameraThread extends Thread {
         }
     };
 
-    CameraThread(
-            final CameraRecordListener cameraRecordListener,
-            final OnStartPreviewListener listener,
-            final SurfaceTexture surfaceTexture,
-            final CameraManager cameraManager,
-            final LensFacing lensFacing
-    ) {
-        super("Camera thread");
-        this.listener = listener;
-        this.cameraRecordListener = cameraRecordListener;
-        this.surfaceTexture = surfaceTexture;
-        this.cameraManager = cameraManager;
-        this.lensFacing = lensFacing;
-
-    }
-
-    private static Size getClosestSupportedSize(List<Size> supportedSizes, final int requestedWidth, final int requestedHeight) {
-        return Collections.min(supportedSizes, new Comparator<Size>() {
-
-            private int diff(final Size size) {
-                return Math.abs(requestedWidth - size.getWidth()) + Math.abs(requestedHeight - size.getHeight());
-            }
-
-            @Override
-            public int compare(final Size lhs, final Size rhs) {
-                return diff(lhs) - diff(rhs);
-            }
-        });
-
-    }
-
-    void setZoom() {
-
-        // requestBuilder.set(CaptureRequest.SCALER_CROP_REGION, 1);
-    }
-
-    public CameraHandler getHandler() {
-        synchronized (readyFence) {
-            try {
-                readyFence.wait();
-            } catch (final InterruptedException e) {
-                e.printStackTrace();
-            }
+    private CameraCaptureSession.StateCallback cameraCaptureSessionCallback = new CameraCaptureSession.StateCallback() {
+        @Override
+        public void onConfigured(CameraCaptureSession session) {
+            cameraCaptureSession = session;
+            updatePreview();
         }
-        return handler;
-    }
+
+        @Override
+        public void onConfigureFailed(CameraCaptureSession session) {
+            // Toast.makeText(activity, "onConfigureFailed", Toast.LENGTH_LONG).show();
+        }
+    };
+
 
     private void updatePreview() {
 
@@ -143,6 +134,7 @@ public class CameraThread extends Thread {
             e.printStackTrace();
         }
     }
+
 
     /**
      * message loop
@@ -176,6 +168,8 @@ public class CameraThread extends Thread {
      */
     @SuppressLint("MissingPermission")
     final void startPreview(final int width, final int height) {
+        Log.v(TAG, "startPreview:");
+
         try {
 
             if (cameraManager == null) return;
@@ -187,17 +181,23 @@ public class CameraThread extends Thread {
                 }
                 if (characteristics.get(CameraCharacteristics.LENS_FACING) == lensFacing.getFacing()) {
                     sensorArraySize = characteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
+
                     flashSupport = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
                     StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+
                     if (width < 0 || height < 0) {
                         cameraSize = map.getOutputSizes(SurfaceTexture.class)[0];
                     } else {
                         cameraSize = getClosestSupportedSize(Arrays.asList(map.getOutputSizes(SurfaceTexture.class)), width, height);
                     }
+                    Log.v(TAG, "cameraSize =" + cameraSize);
+
                     HandlerThread thread = new HandlerThread("OpenCamera");
                     thread.start();
                     Handler backgroundHandler = new Handler(thread.getLooper());
+
                     cameraManager.openCamera(cameraId, cameraDeviceCallback, backgroundHandler);
+
                     return;
                 }
             }
@@ -225,6 +225,21 @@ public class CameraThread extends Thread {
         }
 
         listener.onStart(cameraSize, flashSupport);
+
+    }
+
+    private static Size getClosestSupportedSize(List<Size> supportedSizes, final int requestedWidth, final int requestedHeight) {
+        return Collections.min(supportedSizes, new Comparator<Size>() {
+
+            private int diff(final Size size) {
+                return Math.abs(requestedWidth - size.getWidth()) + Math.abs(requestedHeight - size.getHeight());
+            }
+
+            @Override
+            public int compare(final Size lhs, final Size rhs) {
+                return diff(lhs) - diff(rhs);
+            }
+        });
 
     }
 
@@ -267,6 +282,7 @@ public class CameraThread extends Thread {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
+
         requestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         requestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_AUTO);
         requestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER, CameraMetadata.CONTROL_AF_TRIGGER_START);

@@ -7,7 +7,6 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.util.Log;
 
-
 public class EglWrapper {
     private static final boolean DEBUG = false;
     private static final String TAG = "EglWrapper";

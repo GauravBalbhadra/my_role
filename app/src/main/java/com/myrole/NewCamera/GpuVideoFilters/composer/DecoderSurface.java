@@ -11,7 +11,6 @@ import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 
-
 import com.myrole.NewCamera.GpuVideoFilters.egl.EglUtil;
 import com.myrole.NewCamera.GpuVideoFilters.egl.GlFramebufferObject;
 import com.myrole.NewCamera.GpuVideoFilters.egl.GlPreviewFilter;
@@ -199,6 +198,7 @@ class DecoderSurface implements SurfaceTexture.OnFrameAvailableListener {
                     // stalling the test if it doesn't arrive.
                     frameSyncObject.wait(TIMEOUT_MS);
                     if (!frameAvailable) {
+                        // TODO: if "spurious wakeup", continue while loop
                         throw new RuntimeException("Surface frame wait timed out");
                     }
                 } catch (InterruptedException ie) {

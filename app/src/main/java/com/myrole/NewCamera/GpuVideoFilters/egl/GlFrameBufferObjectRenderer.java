@@ -16,11 +16,13 @@ import static android.opengl.GLES20.GL_DEPTH_BUFFER_BIT;
 import static android.opengl.GLES20.GL_FRAMEBUFFER;
 
 
+
 public abstract class GlFrameBufferObjectRenderer implements GLSurfaceView.Renderer {
 
-    private final Queue<Runnable> runOnDraw;
     private GlFramebufferObject framebufferObject;
     private GlFilter normalShader;
+
+    private final Queue<Runnable> runOnDraw;
 
 
     protected GlFrameBufferObjectRenderer() {
@@ -63,7 +65,7 @@ public abstract class GlFrameBufferObjectRenderer implements GLSurfaceView.Rende
     }
 
     @Override
-    protected void finalize() {
+    protected void finalize() throws Throwable {
 
     }
 

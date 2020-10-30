@@ -2,6 +2,7 @@ package com.myrole.NewCamera.GpuVideoFilters.camerarecorder.capture;
 
 import android.media.MediaCodec;
 import android.media.MediaFormat;
+import android.util.Log;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -9,14 +10,19 @@ import java.nio.ByteBuffer;
 
 
 public abstract class MediaEncoder implements Runnable {
+    private final String TAG = getClass().getSimpleName();
+
     protected static final int TIMEOUT_USEC = 10000;    // 10[msec]
-    private static final String TAG = "MediaEncoder";
+
+    public interface MediaEncoderListener {
+        void onPrepared(MediaEncoder encoder);
+
+        void onStopped(MediaEncoder encoder);
+
+        void onExit();
+    }
+
     protected final Object sync = new Object();
-    /**
-     * Weak refarence of MediaMuxerWarapper instance
-     */
-    protected final WeakReference<MediaMuxerCaptureWrapper> weakMuxer;
-    protected final MediaEncoderListener listener;
     /**
      * Flag that indicate this encoder is capturing now.
      */
@@ -46,13 +52,15 @@ public abstract class MediaEncoder implements Runnable {
      */
     protected MediaCodec mediaCodec;
     /**
+     * Weak refarence of MediaMuxerWarapper instance
+     */
+    protected final WeakReference<MediaMuxerCaptureWrapper> weakMuxer;
+    /**
      * BufferInfo instance for dequeuing
      */
     private MediaCodec.BufferInfo bufferInfo;
-    /**
-     * previous presentationTimeUs for writing
-     */
-    private long prevOutputPTSUs = 0;
+
+    protected final MediaEncoderListener listener;
 
     MediaEncoder(final MediaMuxerCaptureWrapper muxer, final MediaEncoderListener listener) {
         if (listener == null) throw new NullPointerException("MediaEncoderListener is null");
@@ -131,11 +139,12 @@ public abstract class MediaEncoder implements Runnable {
                 }
             }
         } // end of while
-
+        Log.d(TAG, "Encoder thread exiting");
         synchronized (sync) {
             requestStop = true;
             isCapturing = false;
         }
+        listener.onExit();
     }
 
     /*
@@ -146,7 +155,7 @@ public abstract class MediaEncoder implements Runnable {
     abstract void prepare() throws IOException;
 
     void startRecording() {
-
+        Log.v(TAG, "startRecording");
         synchronized (sync) {
             isCapturing = true;
             requestStop = false;
@@ -158,7 +167,7 @@ public abstract class MediaEncoder implements Runnable {
      * the method to request stop encoding
      */
     void stopRecording() {
-
+        Log.v(TAG, "stopRecording");
         synchronized (sync) {
             if (!isCapturing || requestStop) {
                 return;
@@ -177,11 +186,11 @@ public abstract class MediaEncoder implements Runnable {
      * Release all releated objects
      */
     protected void release() {
-
+        Log.d(TAG, "release:");
         try {
             listener.onStopped(this);
         } catch (final Exception e) {
-
+            Log.e(TAG, "failed onStopped", e);
         }
         isCapturing = false;
         if (mediaCodec != null) {
@@ -190,7 +199,7 @@ public abstract class MediaEncoder implements Runnable {
                 mediaCodec.release();
                 mediaCodec = null;
             } catch (final Exception e) {
-
+                Log.e(TAG, "failed releasing MediaCodec", e);
             }
         }
         if (muxerStarted) {
@@ -199,7 +208,7 @@ public abstract class MediaEncoder implements Runnable {
                 try {
                     muxer.stop();
                 } catch (final Exception e) {
-
+                    Log.e(TAG, "failed stopping muxer", e);
                 }
             }
         }
@@ -207,7 +216,7 @@ public abstract class MediaEncoder implements Runnable {
     }
 
     protected void signalEndOfInputStream() {
-
+        Log.d(TAG, "sending EOS to encoder");
         // signalEndOfInputStream is only avairable for video encoding with surface
         // and equivalent sending a empty buffer with BUFFER_FLAG_END_OF_STREAM flag.
         encode(null, 0, getPTSUs());
@@ -234,7 +243,7 @@ public abstract class MediaEncoder implements Runnable {
                 if (length <= 0) {
                     // send EOS
                     isEOS = true;
-
+                    Log.i(TAG, "send BUFFER_FLAG_END_OF_STREAM");
                     mediaCodec.queueInputBuffer(inputBufferIndex, 0, 0,
                             presentationTimeUs, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
                     break;
@@ -255,7 +264,7 @@ public abstract class MediaEncoder implements Runnable {
         int encoderStatus, count = 0;
         final MediaMuxerCaptureWrapper muxer = weakMuxer.get();
         if (muxer == null) {
-
+            Log.w(TAG, "muxer is unexpectedly null");
             return;
         }
         LOOP:
@@ -269,7 +278,7 @@ public abstract class MediaEncoder implements Runnable {
                         break LOOP;        // out of while
                 }
             } else if (encoderStatus == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-
+                Log.v(TAG, "INFO_OUTPUT_FORMAT_CHANGED");
                 // this status indicate the output format of codec is changed
                 // this should come only once before actual encoded data
                 // but this status never come on Android4.3 or less
@@ -295,7 +304,7 @@ public abstract class MediaEncoder implements Runnable {
                 }
             } else if (encoderStatus < 0) {
                 // unexpected status
-
+                Log.w(TAG, "drain:unexpected result from encoder#dequeueOutputBuffer: " + encoderStatus);
             } else {
                 final ByteBuffer encodedData = mediaCodec.getOutputBuffer(encoderStatus);
                 if (encodedData == null) {
@@ -307,7 +316,7 @@ public abstract class MediaEncoder implements Runnable {
                     // but MediaCodec#getOutputFormat can not call here(because INFO_OUTPUT_FORMAT_CHANGED don't come yet)
                     // therefor we should expand and prepare output format from buffer data.
                     // This sample is for API>=18(>=Android 4.3), just ignore this flag here
-
+                    Log.d(TAG, "drain:BUFFER_FLAG_CODEC_CONFIG");
                     bufferInfo.size = 0;
                 }
 
@@ -335,6 +344,11 @@ public abstract class MediaEncoder implements Runnable {
     }
 
     /**
+     * previous presentationTimeUs for writing
+     */
+    private long prevOutputPTSUs = 0;
+
+    /**
      * get next encoding presentationTimeUs
      *
      * @return
@@ -346,12 +360,6 @@ public abstract class MediaEncoder implements Runnable {
         if (result < prevOutputPTSUs)
             result = (prevOutputPTSUs - result) + result;
         return result;
-    }
-
-    public interface MediaEncoderListener {
-        void onPrepared(MediaEncoder encoder);
-
-        void onStopped(MediaEncoder encoder);
     }
 }
 

@@ -9,15 +9,14 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-
 public class EglSurface {
     private static final boolean DEBUG = false;
     private static final String TAG = "EglWrapper";
 
 
     private final EglWrapper egl;
-    private final int width, height;
     private EGLSurface eglSurface = EGL14.EGL_NO_SURFACE;
+    private final int width, height;
 
     EglSurface(final EglWrapper egl, final Object surface) {
         if (DEBUG) Log.v(TAG, "EglSurface:");

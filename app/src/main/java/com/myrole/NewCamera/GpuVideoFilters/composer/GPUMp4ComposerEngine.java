@@ -103,7 +103,7 @@ class GPUMp4ComposerEngine {
 
             // setup audio if present and not muted
             if (mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_AUDIO) != null && !mute) {
-                // has StorageAudioFile video
+                // has Audio video
 
                 if (timeScale < 2) {
                     audioComposer = new AudioComposer(mediaExtractor, audioTrackIndex, muxRender);

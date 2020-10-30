@@ -11,7 +11,6 @@ import android.view.Surface;
 
 import com.myrole.NewCamera.GpuVideoFilters.egl.filter.GlFilter;
 
-
 public class GPUCameraRecorderBuilder {
 
 
@@ -90,8 +89,8 @@ public class GPUCameraRecorderBuilder {
         }
 
         CameraManager cameraManager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
-
         boolean isLandscapeDevice = resources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+
         int degrees = 0;
         if (isLandscapeDevice) {
             int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();

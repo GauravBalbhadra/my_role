@@ -3,6 +3,7 @@ package com.myrole.NewCamera.GpuVideoFilters.camerarecorder.capture;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
+import android.util.Log;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -89,13 +90,13 @@ public class MediaMuxerCaptureWrapper {
      * @return true when muxer is ready to write
      */
     synchronized boolean start() {
-
+        Log.v(TAG, "start:");
         startedCount++;
         if ((encoderCount > 0) && (startedCount == encoderCount)) {
             mediaMuxer.start();
             isStarted = true;
             notifyAll();
-
+            Log.v(TAG, "MediaMuxer started:");
         }
         return isStarted;
     }
@@ -105,12 +106,13 @@ public class MediaMuxerCaptureWrapper {
      */
     /*package*/
     synchronized void stop() {
+        Log.v(TAG, "stop:startedCount=" + startedCount);
         startedCount--;
         if ((encoderCount > 0) && (startedCount <= 0)) {
             mediaMuxer.stop();
             mediaMuxer.release();
             isStarted = false;
-
+            Log.v(TAG, "MediaMuxer stopped:");
         }
     }
 
@@ -124,7 +126,10 @@ public class MediaMuxerCaptureWrapper {
         if (isStarted) {
             throw new IllegalStateException("muxer already started");
         }
+
         final int trackIx = mediaMuxer.addTrack(format);
+        Log.i(TAG, "addTrack:trackNum=" + encoderCount + ",trackIx=" + trackIx + ",format=" + format);
+
         String mime = format.getString(MediaFormat.KEY_MIME);
         if (!mime.startsWith("video/")) {
             audioTrackIndex = trackIx;

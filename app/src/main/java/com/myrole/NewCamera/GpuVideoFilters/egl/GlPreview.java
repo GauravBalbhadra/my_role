@@ -11,8 +11,11 @@ import static android.opengl.GLES20.GL_TEXTURE_2D;
 import static android.opengl.GLES20.GL_TRIANGLE_STRIP;
 
 
+
 public class GlPreview extends GlFilter {
+
     public static final int GL_TEXTURE_EXTERNAL_OES = 0x8D65;
+
     private static final String VERTEX_SHADER =
             "uniform mat4 uMVPMatrix;\n" +
                     "uniform mat4 uSTMatrix;\n" +
@@ -32,9 +35,7 @@ public class GlPreview extends GlFilter {
     private final int texTarget;
 
     public GlPreview(final int texTarget) {
-
         super(VERTEX_SHADER, createFragmentShaderSourceOESIfNeed(texTarget));
-
         this.texTarget = texTarget;
     }
 

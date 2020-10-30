@@ -20,6 +20,7 @@ import static android.opengl.GLES20.GL_TEXTURE_BINDING_2D;
 import static android.opengl.GLES20.GL_UNSIGNED_BYTE;
 
 
+
 public class GlFramebufferObject {
     private int width;
     private int height;
@@ -41,10 +42,12 @@ public class GlFramebufferObject {
 
     public void setup(final int width, final int height) {
         final int[] args = new int[1];
+
         GLES20.glGetIntegerv(GL_MAX_TEXTURE_SIZE, args, 0);
         if (width > args[0] || height > args[0]) {
             throw new IllegalArgumentException("GL_MAX_TEXTURE_SIZE " + args[0]);
         }
+
         GLES20.glGetIntegerv(GL_MAX_RENDERBUFFER_SIZE, args, 0);
         if (width > args[0] || height > args[0]) {
             throw new IllegalArgumentException("GL_MAX_RENDERBUFFER_SIZE " + args[0]);
@@ -56,13 +59,17 @@ public class GlFramebufferObject {
         final int saveRenderbuffer = args[0];
         GLES20.glGetIntegerv(GL_TEXTURE_BINDING_2D, args, 0);
         final int saveTexName = args[0];
+
         release();
+
         try {
             this.width = width;
             this.height = height;
+
             GLES20.glGenFramebuffers(args.length, args, 0);
             framebufferName = args[0];
             GLES20.glBindFramebuffer(GL_FRAMEBUFFER, framebufferName);
+
             GLES20.glGenRenderbuffers(args.length, args, 0);
             renderBufferName = args[0];
             GLES20.glBindRenderbuffer(GL_RENDERBUFFER, renderBufferName);

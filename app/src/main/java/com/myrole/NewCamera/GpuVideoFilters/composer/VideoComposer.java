@@ -1,3 +1,4 @@
+
 package com.myrole.NewCamera.GpuVideoFilters.composer;
 
 import android.media.MediaCodec;
@@ -23,7 +24,6 @@ class VideoComposer {
     private final MediaFormat outputFormat;
     private final MuxRender muxRender;
     private final MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-    private final int timeScale;
     private MediaCodec decoder;
     private MediaCodec encoder;
     private ByteBuffer[] decoderInputBuffers;
@@ -37,6 +37,7 @@ class VideoComposer {
     private boolean decoderStarted;
     private boolean encoderStarted;
     private long writtenPresentationTimeUs;
+    private final int timeScale;
 
     VideoComposer(MediaExtractor mediaExtractor, int trackIndex,
                   MediaFormat outputFormat, MuxRender muxRender, int timeScale) {

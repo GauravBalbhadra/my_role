@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Surface;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
-
 import com.myrole.NewCamera.GpuVideoFilters.egl.EglUtil;
 import com.myrole.NewCamera.GpuVideoFilters.egl.GlFrameBufferObjectRenderer;
 import com.myrole.NewCamera.GpuVideoFilters.egl.GlFramebufferObject;
@@ -15,7 +14,6 @@ import com.myrole.NewCamera.GpuVideoFilters.egl.GlPreviewFilter;
 import com.myrole.NewCamera.GpuVideoFilters.egl.GlSurfaceTexture;
 import com.myrole.NewCamera.GpuVideoFilters.egl.filter.GlFilter;
 import com.myrole.NewCamera.GpuVideoFilters.egl.filter.GlLookUpTableFilter;
-
 
 import javax.microedition.khronos.egl.EGLConfig;
 
@@ -28,19 +26,26 @@ import static android.opengl.GLES20.glViewport;
 
 public class GPUPlayerRenderer extends GlFrameBufferObjectRenderer implements SurfaceTexture.OnFrameAvailableListener {
     private static final String TAG = GPUPlayerRenderer.class.getSimpleName();
-    private final GPUPlayerView glPreview;
+
     private GlSurfaceTexture previewTexture;
     private boolean updateSurface = false;
+
     private int texName;
+
     private float[] MVPMatrix = new float[16];
     private float[] ProjMatrix = new float[16];
     private float[] MMatrix = new float[16];
     private float[] VMatrix = new float[16];
     private float[] STMatrix = new float[16];
+
+
     private GlFramebufferObject filterFramebufferObject;
     private GlPreviewFilter previewFilter;
+
     private GlFilter glFilter;
     private boolean isNewFilter;
+    private final GPUPlayerView glPreview;
+
     private float aspectRatio = 1f;
 
     private SimpleExoPlayer simpleExoPlayer;
@@ -130,6 +135,7 @@ public class GPUPlayerRenderer extends GlFrameBufferObjectRenderer implements Su
 
     @Override
     public void onDrawFrame(final GlFramebufferObject fbo) {
+
         synchronized (this) {
             if (updateSurface) {
                 previewTexture.updateTexImage();

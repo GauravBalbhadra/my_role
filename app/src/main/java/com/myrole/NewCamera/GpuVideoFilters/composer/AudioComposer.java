@@ -19,6 +19,7 @@ class AudioComposer implements IAudioComposer {
     private int bufferSize;
     private ByteBuffer buffer;
     private boolean isEOS;
+    private MediaFormat actualOutputFormat;
     private long writtenPresentationTimeUs;
 
     AudioComposer(MediaExtractor mediaExtractor, int trackIndex,
@@ -27,7 +28,7 @@ class AudioComposer implements IAudioComposer {
         this.trackIndex = trackIndex;
         this.muxRender = muxRender;
 
-        MediaFormat actualOutputFormat = this.mediaExtractor.getTrackFormat(this.trackIndex);
+        actualOutputFormat = this.mediaExtractor.getTrackFormat(this.trackIndex);
         this.muxRender.setOutputFormat(this.sampleType, actualOutputFormat);
         bufferSize = actualOutputFormat.getInteger(MediaFormat.KEY_MAX_INPUT_SIZE);
         buffer = ByteBuffer.allocateDirect(bufferSize).order(ByteOrder.nativeOrder());
